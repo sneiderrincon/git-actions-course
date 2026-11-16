@@ -1,24 +1,13 @@
-
-name: Hola Mundo Python
-
-on:
-  push:
-    branches:
-      - aprendiendo-github-actions
-  workflow_dispatch:
-
+name: Aprendiendo GitHub Actions
+run-name: ¡Estoy aprendiendo GitHub Actions!
+on: [push]
 jobs:
-  ejecutar-python:
+  hola-mundo:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Descargar repositorio
-        uses: actions/checkout@v4
-
-      - name: Configurar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Ejecutar script
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Definir variable
+        run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+      - name: Correr script
         run: python hola_mundo.py
