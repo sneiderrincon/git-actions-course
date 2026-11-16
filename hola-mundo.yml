@@ -1,0 +1,28 @@
+
+name: Hola Mundo Python
+
+# Eventos que ejecutan el workflow
+on:
+  push:
+    branches:
+      - aprendiendo-github-actions
+  workflow_dispatch:
+
+jobs:
+  ejecutar-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Descargar el código del repositorio
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      # Configurar Python
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Ejecutar el script
+      - name: Ejecutar Hola Mundo
+        run: python hola_mundo.py
